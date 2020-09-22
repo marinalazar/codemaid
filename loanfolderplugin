@@ -1,0 +1,27 @@
+            foreach (MilestoneEvent milestoneEvent in (LoanLogEntryCollection)currentLoan.Log.MilestoneEvents)
+            {
+                bool FundingCompleted = milestoneEvent.MilestoneName.Equals("funding", StringComparison.CurrentCultureIgnoreCase);
+                if (milestoneEvent.MilestoneName.Equals("Initial Disclosure", StringComparison.CurrentCultureIgnoreCase) && (!currentLoan.LoanFolder.Equals("Employee") || !currentLoan.LoanFolder.Equals("House")))
+                    flag1 = milestoneEvent.Completed;
+                else if (FundingCompleted && currentLoan.Fields["CUST13FV"].Value.ToString().Equals("ACM Internal") && currentLoan.Fields["3237"].Value.Equals((object)"643114") && (currentLoan.Fields["19"].ToString().Equals("ConstructionOnly") || currentLoan.Fields["19"].ToString().Equals("ConstructionToPermanent") && (!currentLoan.Fields["cx.source"].ToString().Equals("Employee", StringComparison.CurrentCultureIgnoreCase)) && (!currentLoan.Fields["cx.source"].ToString().Equals("House", StringComparison.CurrentCultureIgnoreCase))))
+                    flag2 = milestoneEvent.Completed;
+                else if (FundingCompleted && currentLoan.Fields["CUST13FV"].Value.ToString().Equals("FHM Internal") && currentLoan.Fields["3237"].Value.Equals((object)"86548") && (currentLoan.Fields["19"].ToString().Equals("ConstructionOnly") || currentLoan.Fields["19"].ToString().Equals("ConstructionToPermanent") && (!currentLoan.Fields["cx.source"].ToString().Equals("Employee", StringComparison.CurrentCultureIgnoreCase)) && (!currentLoan.Fields["cx.source"].ToString().Equals("House", StringComparison.CurrentCultureIgnoreCase))))
+                    flag3 = milestoneEvent.Completed;
+                else if (FundingCompleted && currentLoan.Fields["CUST13FV"].Value.ToString().Equals("ICM Internal") && currentLoan.Fields["3237"].Value.Equals((object)"56323") && (currentLoan.Fields["19"].ToString().Equals("ConstructionOnly") || currentLoan.Fields["19"].ToString().Equals("ConstructionToPermanent") && (!currentLoan.Fields["cx.source"].ToString().Equals("Employee", StringComparison.CurrentCultureIgnoreCase)) && (!currentLoan.Fields["cx.source"].ToString().Equals("House", StringComparison.CurrentCultureIgnoreCase))))
+                    flag4 = milestoneEvent.Completed;
+                else if (FundingCompleted && currentLoan.Fields["CUST13FV"].Value.ToString().Equals("MVB Mortgage Construction") && currentLoan.Fields["3237"].Value.Equals((object)"181319") && (currentLoan.Fields["19"].ToString().Equals("ConstructionOnly") || currentLoan.Fields["19"].ToString().Equals("ConstructionToPermanent") && (!currentLoan.Fields["cx.source"].ToString().Equals("Employee", StringComparison.CurrentCultureIgnoreCase)) && (!currentLoan.Fields["cx.source"].ToString().Equals("House", StringComparison.CurrentCultureIgnoreCase))))
+                    flag5 = milestoneEvent.Completed;
+                else if (milestoneEvent.MilestoneName.Equals("sold", StringComparison.CurrentCultureIgnoreCase) && currentLoan.LoanFolder == "Employee & House Loans")
+                    flag6 = milestoneEvent.Completed;
+                else if (milestoneEvent.MilestoneName.Equals("sold", StringComparison.CurrentCultureIgnoreCase) && currentLoan.LoanFolder.Equals("House"))
+                    flag7 = milestoneEvent.Completed;
+                else if (milestoneEvent.MilestoneName.Equals("sold", StringComparison.CurrentCultureIgnoreCase) && currentLoan.LoanFolder.Equals("Employee"))
+                    flag8 = milestoneEvent.Completed;
+                else if (milestoneEvent.MilestoneName.Equals("purchase advice recd", StringComparison.CurrentCultureIgnoreCase) && currentLoan.LoanFolder == "Employee & House Loans")
+                    flag9 = milestoneEvent.Completed;
+                else if (milestoneEvent.MilestoneName.Equals("purchase advice recd", StringComparison.CurrentCultureIgnoreCase) && currentLoan.LoanFolder.Equals("House"))
+                    flag10 = milestoneEvent.Completed;
+                else if (milestoneEvent.MilestoneName.Equals("purchase advice recd", StringComparison.CurrentCultureIgnoreCase) && currentLoan.LoanFolder.Equals("Employee"))
+                    flag11 = milestoneEvent.Completed;
+                else if (FundingCompleted && !currentLoan.LoanFolder.Contains("Construction") && !currentLoan.LoanFolder.Contains("Employee"))
+                    flag12 = milestoneEvent.Completed;
